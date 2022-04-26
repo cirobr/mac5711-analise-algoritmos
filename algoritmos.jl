@@ -1,6 +1,6 @@
 # A[i] <-> A[j]
 # theta(3)
-function swap(A::Vector{Int}, i::Int, j::Int)
+function swap(A::Vector, i::Int, j::Int)
     temp = A[i]
     A[i] = A[j]
     A[j] = temp
@@ -20,7 +20,7 @@ end
 
 
 # theta(n)
-function minVec(A::Vector{Float32})   # Float necessário para comparação com Inf
+function minVec(A::Vector)   # Float necessário para comparação com Inf
     m = Inf
     n = size(A)[1]
 
@@ -34,7 +34,7 @@ end
 
 
 # theta(n)
-function maxVec(A::Vector{Int})
+function maxVec(A::Vector)
     m = 0
     n = size(A)[1]
 
@@ -48,7 +48,7 @@ end
 
 
 # theta(n), se for uma varredura com for
-function findInVector(A::Vector{Int}, p::Int, r::Int, x::Int)
+function findInVector(A::Vector, p::Int, r::Int, x::Int)
     x = findfirst(y -> y==x, A[p:r])
     x = x+p-1
 end
@@ -60,7 +60,7 @@ end
 
 
 # CLRS page 12
-function insertion_sort(A::Vector{Int})
+function insertion_sort(A::Vector)
     n = size(A)[1]                   # vector size
     for j in 2 : n                   # scan from 2nd:last element
         key = A[j]                   # store element in key
@@ -115,7 +115,7 @@ end
 
 # CLRS page 124
 # theta(n)
-function partition(A::Vector{Int}, p::Int, r::Int)
+function partition(A::Vector, p::Int, r::Int)
     x = A[r]                # x é o pivô, último elemento entre p:r
     i = p-1                 # i inicializa como imediatemente anterior a p
     for j in p : r-1        # varredura entre p até antes do pivô
@@ -134,7 +134,7 @@ end
 # T(n) = T(k) + T(n-k+1) + theta(n);   n = r-p+1
 # pior caso theta(n^2)           k=0 ou k=n em todas as recursões;   pior caso, árvore desbalanceada
 # melhor caso theta(n lg(n))     k=n/2;                              melhor caso, árvore balanceada
-function quicksort(A::Vector{Int}, p::Int, r::Int)
+function quicksort(A::Vector, p::Int, r::Int)
     if p < r
         q = partition(A, p, r)   # divide o vetor, elementos à esquerda são menores que A[q], à direita são maiores
         quicksort(A, p, q-1)     # processa a parte esquerda, sem o pivô
@@ -144,7 +144,7 @@ end
 
 
 # CLRS page 130
-function randomized_partition(A::Vector{Int}, p::Int, r::Int)
+function randomized_partition(A::Vector, p::Int, r::Int)
     i = rand(p:r)            # sorteia elemento i entre p:r
     swap(A, r, i)            # A[r] <-> A[i]
     partition(A, p, r)       # retorna o pivô q
@@ -152,7 +152,7 @@ end
 
 
 # CLRS page 130
-function randomized_quicksort(A::Vector{Int}, p::Int, r::Int)
+function randomized_quicksort(A::Vector, p::Int, r::Int)
     if p < r
         q = randomized_partition(A, p, r)   # versão randomizada
         randomized_quicksort(A, p, q-1)     # recursão antes do pivô
@@ -163,7 +163,7 @@ end
 
 # CLRS page 157
 # theta(n) average case
-function randomized_select(A, p, r, k)
+function randomized_select(A::Vector, p::Int, r::Int, k::Int)
     if p == r                           # base da recursão
         res = A[p]
         return(res)
