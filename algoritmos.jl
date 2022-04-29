@@ -60,6 +60,7 @@ end
 
 
 # CLRS page 12
+# O(n^2), Omega(n), 
 function insertion_sort(A::Vector)
     n = size(A)[1]                   # vector size
     for j in 2 : n                   # scan from 2nd:last element
