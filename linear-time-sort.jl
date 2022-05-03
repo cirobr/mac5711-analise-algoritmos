@@ -9,7 +9,7 @@ function counting_sort(A::Vector{Int}, k::Int)
     for i in 2:k   C[i] = C[i] + C[i-1]   end
     for j in n : -1 : 1
         B[ C[ A[j] ] ] = A[j]                   # estabilidade do counting_sort
-        C[ A[j] ]      = C[ A[j] ] - 1          # estabilidade do counting_sort
+        C[ A[j] ]      = C[ A[j] ] - 1
     end
     
     return B
