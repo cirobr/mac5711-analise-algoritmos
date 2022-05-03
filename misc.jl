@@ -47,7 +47,7 @@ function maxVec(A::Vector)
 end
 
 
-# theta(n), varredura com for
+# theta(n)
 function findInVector(A::Vector, p::Int, r::Int, x::Int)
     ind = -1
     for i in p:r
