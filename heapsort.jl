@@ -1,5 +1,21 @@
+# https://www.ime.usp.br/~pf/analise_de_algoritmos/aulas/heap.html
+# https://www.ime.usp.br/~pf/analise_de_algoritmos/aulas/priority.html
+
+
+# setup
+include("./misc.jl")
+
+
 # nó pai de um dado nó i
-parentNode(i) = floor(Int, i/2)
+function parentNode(i::Int)
+    if i < 1
+        return("negative node not allowed")
+    elseif i == 1
+        return(0)
+    elseif i > 1
+        return( floor(Int, i/2) )
+    end
+end
 
 
 # CLRS page 112 (desce_heap)
@@ -10,7 +26,7 @@ function max_heapify(A::Vector, n::Int, i::Int)
     # println(A)
     e = 2i
     d = 2i+1
-    maior = ( ( e <= n && A[e] > A[i] ) ? e : i )
+    maior = ( ( (e <= n) && (A[e] > A[i]) ) ? e : i )
     if ( d <= n ) && ( A[d] > A[maior] )   maior = d   end
     if maior != i
         swap(A, i, maior)
@@ -69,7 +85,7 @@ function heap_increase_key(A::Vector, i::Int, k::Int)
     A[i] = k
     while i > 1 && A[parentNode(i)] < A[i]   # refaz o heap recolocando k para um local acima na árvore
         swap( A, i, parentNode(i) )
-        i = copy( parentNode(i) )
+        i = parentNode(i)
     end
 end
 
@@ -78,12 +94,12 @@ end
 # O(lg n)
 function max_heap_insert(A::Vector{Float32}, heapsize::Int, k::Int)
     heapsize += 1
-    if heapsize <= size(A)[1]
-        A[heapsize] = -Inf   # necessário A::Float32
+    if heapsize <= size(A)[1]           # adiciona elemento cuja chave é a menor possível
+        A[heapsize] = -Inf              # necessário A::Float32
     else
-        push!(A, -Inf)
+        push!(A, -Inf)                  # necessário A::Float32
     end
-    heap_increase_key(A, heapsize, k)
+    heap_increase_key(A, heapsize, k)   # aumenta o valor da chave -Inf, trocando-a por k > -Inf
     
     return(heapsize)
 end

@@ -1,3 +1,7 @@
+# setup
+include("./misc.jl")
+
+
 # CLRS page 124
 # theta(n)
 function partition(A::Vector, p::Int, r::Int)

@@ -1,3 +1,7 @@
+# setup
+include("./partition-quicksort-randomized.jl")
+
+
 # CLRS page 157
 # theta(n) average case
 function randomized_select(A::Vector, p::Int, r::Int, k::Int)
