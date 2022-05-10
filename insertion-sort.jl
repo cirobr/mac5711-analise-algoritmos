@@ -1,7 +1,6 @@
 # CLRS page 12
 # O(n^2), Omega(n), 
-function insertion_sort(A::Vector)
-    n = size(A)[1]                   # vector size
+function insertion_sort(A::Vector, n::Int)
     for j in 2 : n                   # scan from 2nd:last element
         key = A[j]                   # store element in key
         i = j-1                      # reference to previous element
