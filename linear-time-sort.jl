@@ -71,6 +71,7 @@ function ordene(A::Vector{Int}, n::Int, i::Int)
 end
 
 
+# CLRS page 143
 function radix_sort(A::Vector{Int}, n::Int, d::Int)
     B = copy(A)
     for i in 1:d
