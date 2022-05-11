@@ -20,10 +20,9 @@ end
 
 
 # theta(n)
-function minVec(A::Vector)   # Float necessário para comparação com Inf
+# retorna o índice do menor valor de A
+function minVec(A::Vector{Float32}, n)   # Float necessário para comparação com Inf
     m = Inf
-    n = size(A)[1]
-
     for i in 1:n
         if A[i] < m
             m = A[i]
@@ -34,10 +33,9 @@ end
 
 
 # theta(n)
-function maxVec(A::Vector)
+# retorna o índice do maior valor de A
+function maxVec(A::Vector, n::Int)
     m = 0
-    n = size(A)[1]
-
     for i in 1:n
         if A[i] > m
             m = A[i]
