@@ -24,7 +24,7 @@ end
 # pior caso theta(n^2)           k=0 ou k=n em todas as recursões;   pior caso, árvore desbalanceada
 # melhor caso theta(n lg(n))     k=n/2;                              melhor caso, árvore balanceada
 function quicksort(A::Vector, p::Int, r::Int)
-    if p < r
+    if p < r                     # r-p+1 > 1
         q = partition(A, p, r)   # divide o vetor, elementos à esquerda são menores que A[q], à direita são maiores
         quicksort(A, p, q-1)     # processa a parte esquerda, sem o pivô
         quicksort(A, q+1, r)     # processa a parte direita, sem o pivô
